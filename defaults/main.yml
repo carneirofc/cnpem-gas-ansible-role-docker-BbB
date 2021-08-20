@@ -1,0 +1,5 @@
+---
+gas_docker_BbB_base_template_dir: ~/templates
+
+gas_docker_BbB_logging_max_size: "10m"
+gas_docker_BbB_logging_max_file: "10"
