@@ -3,8 +3,8 @@ x-defaults: &defaults
   logging:
     driver: "json-file"
     options:
-      max-size: {{ gas_docker_BbB_logging_max_size }}
-      max-file: {{ gas_docker_BbB_logging_max_file }}
+      max-size: "{{ gas_docker_BbB_logging_max_size }}"
+      max-file: "{{ gas_docker_BbB_logging_max_file }}"
   networks:
     - hostnet
 
@@ -37,8 +37,12 @@ services:
         target: {{ item.ARAMP_AUTOSAVE_CONTAINER_DIR }}
     deploy:
       <<: *deploy
+{% if item.ARAMP_PLACEMENT is defined %}
       placement:
-        constraints:
-{% for item in item.ARAMP_PLACEMENT %}
-          - {{ item }}
-{% endfor %}
+  {% if item.ARAMP_PLACEMENT.CONSTRAINTS is defined and item.ARAMP_PLACEMENT.CONSTRAINTS | length %}
+      constraints:
+    {% for item in item.ARAMP_PLACEMENT.CONSTRAINTS %}
+      - {{ item }}
+    {% endfor %}
+  {% endif %}
+{% endif %}

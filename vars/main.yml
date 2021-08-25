@@ -1,30 +1,21 @@
 ---
-gas_docker_BbB_settings_defaults: &gas_docker_BbB_settings_defaults
-  ARAMP_AREA_PREFIX: "SI-Glob:"
-  ARAMP_AUTOSAVE_CONTAINER_DIR: "/opt/epics/startup/ioc/ar-amp-epics-ioc/iocBoot/iocARAmp/autosave"
-  ARAMP_AUTOSAVE_DIR: "/storage/common/autosave/IA-16RaBbB-CO-IOCSrv"
-  ARAMP_CONTAINER_NAME: "ar-amp-epics-ioc"
-  ARAMP_IMAGE_BASE: "dockerregistry.lnls-sirius.com.br/gas/ar-amp-epics-ioc"
-  ARAMP_IMAGE_TAG: "v1.0.6-rc1-base-3.15-debian-9.13"
-  ARAMP_IP: "IA-16RaBbB-CO-SerEthConv"
-  ARAMP_PLACEMENT:
-    - node.hostname != CA-RaCtrl-CO-Srv-1
-    - node.hostname != LA-RaCtrl-CO-Srv-1
-    - node.hostname != TA-TiRack-CO-FWSrv-1
-  ARAMP_TELNET_PORT: ""
-
 gas_docker_BbB_settings:
   # AR Amplifier
-  - <<: *gas_docker_BbB_settings_defaults
-    ARAMP_DEVICE: "75250AM2"
-    ARAMP_DEVICE_PREFIX: "DI-BbBAmpH:"
-    ARAMP_INSTANCE: "ARAmp-SI-Glob-DI-BbBAmpH"
+  - ARAMP_AREA_PREFIX: "BbB-Example:"
+    ARAMP_AUTOSAVE_CONTAINER_DIR: "/opt/epics/startup/ioc/ar-amp-epics-ioc/iocBoot/iocARAmp/autosave"
+    ARAMP_AUTOSAVE_DIR: "/storage/common/autosave/IA-16RaBbB-CO-IOCSrv"
+    ARAMP_CONTAINER_NAME: "ar-amp-epics-ioc"
+    ARAMP_IMAGE_BASE: "dockerregistry.lnls-sirius.com.br/gas/ar-amp-epics-ioc"
+    ARAMP_IMAGE_TAG: "?ARAMP_IMAGE_TAG?"
+    ARAMP_IP: "?ARAMP_IP?"
+    ARAMP_PLACEMENT:
+      CONSTRAINTS:
+        - node.hostname != example-srv1
+        - node.hostname != example-srv2
+        - node.hostname != example-srv3
+    ARAMP_TELNET_PORT: ""
+    ARAMP_DEVICE: "?ARAMP_DEVICE?"
+    ARAMP_DEVICE_PREFIX: "?ARAMP_DEVICE_PREFIX?"
+    ARAMP_INSTANCE: "?ARAMP_INSTANCE?"
     ARAMP_PORT: "4001"
-    STACK_NAME: "BbB-Glob-H"
-
-  - <<: *gas_docker_BbB_settings_defaults
-    ARAMP_DEVICE: "75A400"
-    ARAMP_DEVICE_PREFIX: "DI-BbBAmpV:"
-    ARAMP_INSTANCE: "ARAmp-SI-Glob-DI-BbBAmpV"
-    ARAMP_PORT: "4002"
-    STACK_NAME: "BbB-Glob-V"
+    STACK_NAME: "BbB-Example"
