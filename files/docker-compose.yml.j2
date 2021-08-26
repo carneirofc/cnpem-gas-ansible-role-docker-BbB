@@ -39,10 +39,10 @@ services:
       <<: *deploy
 {% if item.ARAMP_PLACEMENT is defined %}
       placement:
-  {% if item.ARAMP_PLACEMENT.CONSTRAINTS is defined and item.ARAMP_PLACEMENT.CONSTRAINTS | length %}
+{%   if item.ARAMP_PLACEMENT.CONSTRAINTS is defined and item.ARAMP_PLACEMENT.CONSTRAINTS | length %}
       constraints:
-    {% for item in item.ARAMP_PLACEMENT.CONSTRAINTS %}
+{%     for item in item.ARAMP_PLACEMENT.CONSTRAINTS %}
       - {{ item }}
-    {% endfor %}
-  {% endif %}
+{%     endfor %}
+{%   endif %}
 {% endif %}
