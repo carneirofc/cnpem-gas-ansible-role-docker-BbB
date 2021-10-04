@@ -40,9 +40,9 @@ services:
 {% if item.ARAMP_PLACEMENT is defined %}
       placement:
 {%   if item.ARAMP_PLACEMENT.CONSTRAINTS is defined and item.ARAMP_PLACEMENT.CONSTRAINTS | length %}
-      constraints:
+        constraints:
 {%     for item in item.ARAMP_PLACEMENT.CONSTRAINTS %}
-      - {{ item }}
+          - {{ item }}
 {%     endfor %}
 {%   endif %}
 {% endif %}
